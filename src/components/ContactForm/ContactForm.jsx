@@ -21,7 +21,7 @@ export const ContactForm = ({ addContact }) => {
           <Field
             name="number"
             type="tel"
-            placeholder="Number..."
+            // placeholder="Number..."
           />
           <ErrorMessage name="number" />
         </label>
