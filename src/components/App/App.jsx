@@ -5,6 +5,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Section } from 'components/Section/Section';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
+import { Layout } from 'components/Layout';
 
 
 export class App extends Component {
@@ -23,7 +24,7 @@ export class App extends Component {
       return toast.error(
         `${newContact.name} is already added to Your contact's list`
       );
-    }
+    } 
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, newContact],
@@ -53,7 +54,7 @@ export class App extends Component {
   render() {
     const {filter} = this.state;
     return (
-      <>
+      <Layout>
         <Section title="Phonebook">
           <ContactForm addContact={this.addNewContact} />
         </Section>
@@ -62,7 +63,7 @@ export class App extends Component {
           <ContactList contacts={this.normalizedContact()} onDelete={this.contactDelete}/>
         </Section>
         <Toaster/>
-      </>
+      </Layout>
     );
   }
 }

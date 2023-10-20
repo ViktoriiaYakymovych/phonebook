@@ -1,32 +1,45 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
+import * as Yup from 'yup';
+
+import {
+  StyledForm,
+  Lable,
+  StyledField,
+  StyledError,
+  Button,
+} from './ContactForm.styled';
+
+const schema = Yup.object().shape({
+  name: Yup.string().required('Name is required field').trim(),
+  number: Yup.number()
+    .typeError('Must be a number')
+    .required('Number is a required field'),
+});
 
 export const ContactForm = ({ addContact }) => {
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
+      validationSchema={schema}
       onSubmit={(values, actions) => {
         addContact({ ...values, id: nanoid() });
         actions.resetForm();
       }}
     >
-      <Form>
-        <label>
+      <StyledForm>
+        <Lable>
           Name
-          <Field name="name" type="text" placeholder="Name..." />
-          <ErrorMessage name="name" />
-        </label>
-        <label>
+          <StyledField name="name" type="text" placeholder="Name..." />
+          <StyledError component="div" name="name" />
+        </Lable>
+        <Lable>
           Number
-          <Field
-            name="number"
-            type="tel"
-            placeholder="Number..."
-          />
-          <ErrorMessage name="number" />
-        </label>
-        <button type="submit">Add new Contact</button>
-      </Form>
+          <StyledField name="number" type="tel" placeholder="Number..." />
+          <StyledError component="div" name="number" />
+        </Lable>
+        <Button type="submit">Add new Contact</Button>
+      </StyledForm>
     </Formik>
   );
 };

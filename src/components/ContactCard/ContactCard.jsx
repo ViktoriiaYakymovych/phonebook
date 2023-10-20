@@ -1,9 +1,11 @@
+import { ListWrapper, Button } from "./ContactCard.styled";
+
 export const ContactCard = ({ contact: { id, name, number}, onDelete}) => {
   return (
-    <>
+    <ListWrapper>
       <p>{name}</p>
       <p>{number}</p>
-      <button type="button" onClick={() => onDelete(id)}>Delete</button>
-    </>
+      <Button type="button" onClick={() => onDelete(id)}>Delete</Button>
+    </ListWrapper>
   );
 };
