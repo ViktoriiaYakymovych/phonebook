@@ -26,7 +26,7 @@ export const Button = styled.button`
 padding: 4px;
 border: 1px solid black;
 background-color: transparent;
-&:hover, &:focus {
+/* &:hover, &:focus {
     border-color: green;
-}
+} */
 `
